@@ -1,0 +1,10 @@
+nav {
+    .text-white {
+        border-radius: 5px;
+        text-align: center;
+    }
+    .text-white:hover {
+        background-color: rgb(77, 148, 255);
+        transition: 0.1s ease-out;
+    }
+}
