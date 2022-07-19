@@ -1,10 +1,28 @@
-nav {
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@1,700&display=swap');
+
+.logo-busqueda-carrito {
+    background-color: #002F67;
+    .logo {
+        font-family:'Cantarell', sans-serif;
+    }
     .text-white {
         border-radius: 5px;
         text-align: center;
     }
     .text-white:hover {
-        background-color: rgb(77, 148, 255);
+        background-color: rgb(35, 79, 145);
+        transition: 0.1s ease-out;
+    }
+}
+
+.lista-navegacion {
+    background-color: #005897;
+    .text-white {
+        border-radius: 5px;
+        text-align: center;
+    }
+    .text-white:hover {
+        background-color: #2875ac;
         transition: 0.1s ease-out;
     }
 }

@@ -1,5 +1,4 @@
 import logo from '../../assets/images/logo.png';
-import cart from '../../assets/icons/cart.svg';
 import './NavBar.scss';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,13 +7,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import CartWidget from './CartWidget/CartWidget';
 
 const NavBar = () => {
     return (
         <>
-        <Navbar bg="primary" variant="dark">
+        <Navbar variant="dark" className='logo-busqueda-carrito'>
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="#home" className="logo">
                     <img
                     alt=""
                     src={logo}
@@ -50,26 +50,14 @@ const NavBar = () => {
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link>
-                            <img
-                            alt=""
-                            src={cart}
-                            width="20"
-                            height="20"
-                            className="d-inline-block align-center"/>
+                            <CartWidget/>
                         </Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Container>
         </Navbar>
-        {/* <div className="navegar">
-            <ul>
-                <li>Inicio</li>
-                <li>Catálogo</li>
-                <li>Ofertas</li>
-                <li>Próximamente</li>
-            </ul>
-        </div> */}
-        <Navbar bg="primary" variant="dark" expand="lg">
+        
+        <Navbar variant="dark" expand="lg" className='lista-navegacion'>
             <Container>
             <Container>
                 <Row>
