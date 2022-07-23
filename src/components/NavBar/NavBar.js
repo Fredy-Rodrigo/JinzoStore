@@ -1,4 +1,3 @@
-import logo from '../../assets/images/logo.png';
 import './NavBar.scss';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -17,7 +16,7 @@ const NavBar = () => {
                 <Navbar.Brand href="#home" className="logo">
                     <img
                     alt=""
-                    src={logo}
+                    src={'./assets/images/logo.png'}
                     width="30"
                     height="30"
                     className="d-inline-block align-top"

@@ -13,7 +13,7 @@ function App() {
 
       <main>
         <section>
-          <ItemListContainer categoria="EN STOCK"/>
+          <ItemListContainer categoria="EN STOCK"></ItemListContainer>
           <ItemListContainer categoria="OFERTAS Y PROMOCIONES"></ItemListContainer>
           <ItemListContainer categoria="NUEVO EN LA TIENDA"></ItemListContainer>
           <ItemListContainer categoria="LO MAS VENDIDO"></ItemListContainer>

@@ -1,0 +1,24 @@
+.item-count {
+    width: 200px;
+    height: 280px;
+    display: inline-block;
+    margin: 0 10px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    p {
+        color: white;
+        margin: 0;
+    }
+    button {
+        border-radius: 30px;
+    }
+    .contador {
+        p {
+            display: inline-block;
+            margin: 0 10px;
+        }
+    }
+}
