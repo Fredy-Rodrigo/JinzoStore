@@ -1,35 +1,70 @@
-import ItemCount from './ItemCount/ItemCount';
 import './ItemListContainer.scss';
+import ItemList from './ItemList/ItemList';
+import products from '../../utils/products.mock';
+import { useState, useEffect } from 'react';
 
 const ItemListContainer = (props) => {
     const {categoria} = props;
 
-    const product1 = {
-        title:"shaka",
-        price:"50",
-        image:"saint-seiya-shaka.webp",
-        stock: 0,
-        initial: 0
-    }
-    const product2 = {
-        title:"shura",
-        price:"50",
-        image:"saint-seiya-shura.webp",
-        stock: 10,
-        initial: 1
-    }
+    const [listProducts, setListProducts] = useState([]) //creando el estado
 
-    const addProduct = () => {
-        console.log("Proximamente funcion para añadir al carrito");
-    }
+    const getProducts = new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            resolve(products);
+        },2000)
+    })
+
+    useEffect(()=>{
+        getProducts
+            .then((response) => {
+                setListProducts(response) //guardando el array dentro del estado    
+            })
+            .catch((error) => {
+                console.log("ocurrio un error en la llamada");
+            })
+    },[])
 
     return (
         <div className='item-list-container'>
             <h2>{categoria}</h2>
-            <ItemCount data={product1} action={addProduct}/>
-            <ItemCount data={product2} action={addProduct}/>
+            <ItemList items={listProducts} />
         </div>
     )
 }
 
 export default ItemListContainer;
+
+
+
+
+//EJEMPLOS DE LA CLASE DE PROMESAS
+
+    /* const logPromise = new Promise((resolve, reject)=>{
+        resolve("La promesa se cumplio correctamente")
+    })
+
+    logPromise
+    .then((res)=>{ //llamada, accediendo a la promesa
+        console.log(res);
+    })
+    .catch((error)=>{ // se ejecuta en caso de que la llamada falle
+        console.log("la llamada fallo");
+    })
+    .finally(()=>{
+        //por ejemplo desaparece el spinner
+    }) */
+
+    /* const logPromise = () => new Promise((resolve, reject)=>{
+        resolve("La promesa se cumplio correctamente")
+    })
+
+    const getLog = async () => {
+        try {
+            const responseLog = await logPromise();
+            console.log("respuesta desde async function " + responseLog);
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+    getLog(); */
