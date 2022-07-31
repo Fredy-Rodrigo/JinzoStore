@@ -1,0 +1,41 @@
+.item-details {
+    width: 1000px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    .fotos {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        img{
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+        }
+    }
+    .foto-principal {
+        img {
+            width: 600px;
+        }
+    }
+    .descripcion {
+        color: white;
+        .titulo {
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 40px;
+        }
+        .precio {
+            font-size: 24px;
+        }
+        .desc {
+            font-weight: bold;
+            color: rgb(83, 224, 83);
+        }
+        button {
+            border-radius: 30px;
+            padding: 0 20px;
+        }
+    }
+}
