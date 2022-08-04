@@ -4,9 +4,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CartWidget from './CartWidget/CartWidget';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -14,14 +16,16 @@ const NavBar = () => {
         <Navbar variant="dark" className='logo-busqueda-carrito'>
             <Container>
                 <Navbar.Brand href="#home" className="logo">
-                    <img
-                    alt=""
-                    src={'./assets/images/logo.png'}
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                    />{' '}
-                    JinzoStore
+                    <Link to="/" className='logo-brand'>
+                        <img
+                        alt=""
+                        src={'./assets/images/logo.png'}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        />{' '}
+                        JinzoStore
+                    </Link>
                 </Navbar.Brand>
                 
                 <Container>
@@ -62,10 +66,14 @@ const NavBar = () => {
                 <Row>
                 <Col>
                     <Nav className="justify-content-center">
-                        <Nav.Link className="text-white">Inicio</Nav.Link>
-                        <Nav.Link className="text-white">Catálogo</Nav.Link>
-                        <Nav.Link className="text-white">Ofertas</Nav.Link>
-                        <Nav.Link className="text-white">Próximamente</Nav.Link>
+                        <Nav.Link className="text-white"><Link to="/" className='nav-item'>Inicio</Link></Nav.Link>
+                        <NavDropdown title="Categoría" id="basic-nav-dropdown">
+                            <NavDropdown.Item><Link to="/categoria/1" className='nav-subitem'>Caballeros del Zodiaco</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/categoria/2" className='nav-subitem'>Dragon Ball Z</Link></NavDropdown.Item>
+                            <NavDropdown.Item><Link to="/categoria/3" className='nav-subitem'>One Piece</Link></NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link className="text-white"><Link to="/ofertas" className='nav-item'>Ofertas</Link></Nav.Link>
+                        <Nav.Link className="text-white"><Link to="/contacto" className='nav-item'>Contacto</Link></Nav.Link>
                     </Nav>
                 </Col>
                 </Row>

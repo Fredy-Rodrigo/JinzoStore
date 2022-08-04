@@ -17,6 +17,10 @@
     }
 } */
 
-.card-img {
-    height: 300px;
+.card-item {
+    text-decoration: none;
+    color: rgb(97, 97, 97);
+    .card-img {
+        height: 280px;
+    }
 }

@@ -1,29 +1,29 @@
 import './ItemDetailContainer.scss';
 import ItemDetail from './ItemDetail/ItemDetail';
 import products from '../../utils/products.mock'
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 
 const ItemDetailContainer = () => {
-    const [figura, setFigura] = useState([]);
 
-    const getFigura = new Promise((resolve, reject) => {
-        setTimeout(()=>{
-            resolve(products[0]);
-        }, 2000)
-    })
-
+    const [productData, setProductData] = useState({})
+    const {id} = useParams();
+    
     useEffect(() => {
-        getFigura
-        .then((response) => {
-            setFigura(response);
-        })
-        .catch((error) => {
-            console.log('ocurrio un error al hacer la llamada');
-        })
+        filterById();
     }, [])
+
+    const filterById = () => {
+        products.some((element) => {
+            if(element.id == id) {
+                setProductData(element)
+            }
+        })
+    }
+    
     return(
         <div className='item-detail-container'>
-            <ItemDetail item={figura}/>
+            <ItemDetail item={productData}/>
         </div>
     )
 }

@@ -4,6 +4,10 @@
     background-color: #002F67;
     .logo {
         font-family:'Cantarell', sans-serif;
+        .logo-brand {
+            color: white;
+            text-decoration: none;
+        }
     }
     .text-white {
         border-radius: 5px;
@@ -20,9 +24,17 @@
     .text-white {
         border-radius: 5px;
         text-align: center;
+        .nav-item {
+            color: white;
+            text-decoration: none;
+        }
     }
     .text-white:hover {
         background-color: #2875ac;
         transition: 0.1s ease-out;
+    }
+    .nav-subitem {
+        color: #005897;
+        text-decoration: none;
     }
 }
