@@ -13,6 +13,3 @@ Proyecto para el curso de React JS de Coderhouse que simula una tienda virtual d
 - Sass
 - Fortawesome
 - React-Router-DOM
-
-# Navegabilidad 
-
