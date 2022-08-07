@@ -1,7 +1,7 @@
 import './ItemCount.scss';
 import{useState} from 'react';//hook que nos permite definir y actualizar estados
 
-const ItemCount = ({data}) => {
+const ItemCount = ({data, setQuantitySelected}) => {
     const [counter, setCounter] = useState(0);//definiendo un estado, valor inicial de 0
 
     const addNumber = () => {
@@ -16,6 +16,10 @@ const ItemCount = ({data}) => {
         }
     }
 
+    const onAdd = () => {
+        setQuantitySelected(counter);
+    }
+
     return (
         <div className='item-count'>
             {/* <img src={`./assets/images/${image}`} alt={title}/>
@@ -26,7 +30,7 @@ const ItemCount = ({data}) => {
                 <p>{counter}</p>
                 <button onClick={addNumber}>+</button>
             </div>
-            {/* <button>Añadir al carrito</button> */}
+            <button onClick={onAdd}>Añadir al carrito</button>
         </div>
     )
 }
