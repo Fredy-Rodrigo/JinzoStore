@@ -3,10 +3,15 @@
 .logo-busqueda-carrito {
     background-color: #002F67;
     .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-family:'Cantarell', sans-serif;
-        .logo-brand {
-            color: white;
-            text-decoration: none;
+        color: white;
+        text-decoration: none;
+        font-size: 25px;
+        img {
+            margin-right: 10px;
         }
     }
     .text-white {
@@ -24,10 +29,8 @@
     .text-white {
         border-radius: 5px;
         text-align: center;
-        .nav-item {
-            color: white;
-            text-decoration: none;
-        }
+        color: white;
+        text-decoration: none;
     }
     .text-white:hover {
         background-color: #2875ac;

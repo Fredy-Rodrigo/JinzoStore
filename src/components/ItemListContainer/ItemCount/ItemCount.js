@@ -1,7 +1,10 @@
 import './ItemCount.scss';
-import{useState} from 'react';//hook que nos permite definir y actualizar estados
+import{useState, useContext} from 'react';//hook que nos permite definir y actualizar estados
+import { CartContext } from '../../../context/CartContext';
 
 const ItemCount = ({data, setQuantitySelected}) => {
+    const {addProductToCart} = useContext(CartContext);
+
     const [counter, setCounter] = useState(0);//definiendo un estado, valor inicial de 0
 
     const addNumber = () => {
@@ -17,14 +20,12 @@ const ItemCount = ({data, setQuantitySelected}) => {
     }
 
     const onAdd = () => {
+        addProductToCart(data, counter);
         setQuantitySelected(counter);
     }
 
     return (
-        <div className='item-count'>
-            {/* <img src={`./assets/images/${image}`} alt={title}/>
-            <p>{title}</p>
-            <p>$ {price}</p> */}
+        <div className='item-count'>  
             <div className='contador'>
                 <button onClick={substractNumber}>-</button>
                 <p>{counter}</p>

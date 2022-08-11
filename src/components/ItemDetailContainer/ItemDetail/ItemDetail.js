@@ -22,10 +22,10 @@ const ItemDetail = ({item}) => {
                 <p className='titulo'>{item.title}</p>
                 <p className='precio'>S/ {item.price}.00</p>
                 <p className='desc'>{item.description}</p>
-                {console.log(quantitySelected)}
+            
                 {
                     quantitySelected>0? 
-                    <Link to='/cart '><button>TERMINAR COMPRA</button></Link> : 
+                    <Link to='/ '><button>SEGUIR COMPRANDO</button></Link> : 
                     <ItemCount data={item} setQuantitySelected={setQuantitySelected}/>
                 }
             </div>

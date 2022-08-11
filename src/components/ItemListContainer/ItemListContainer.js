@@ -10,9 +10,8 @@ const ItemListContainer = () => {
 
     const {categoryId} = useParams();
 
-    console.log(categoryId);
     const filtrarCategoria = products.filter((producto) => producto.categoria === categoryId);
-    console.log(filtrarCategoria);
+    
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(()=>{
             if(categoryId==="1"||categoryId==="2"||categoryId==="3") {

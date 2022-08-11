@@ -15,8 +15,7 @@ const NavBar = () => {
         <>
         <Navbar variant="dark" className='logo-busqueda-carrito'>
             <Container>
-                <Navbar.Brand href="#home" className="logo">
-                    <Link to="/" className='logo-brand'>
+                <Link to="/" className='logo'>
                         <img
                         alt=""
                         src={'./assets/images/logo.png'}
@@ -25,8 +24,7 @@ const NavBar = () => {
                         className="d-inline-block align-top"
                         />{' '}
                         JinzoStore
-                    </Link>
-                </Navbar.Brand>
+                </Link>
                 
                 <Container>
                     <Row className="justify-content-md-center">
@@ -66,14 +64,14 @@ const NavBar = () => {
                 <Row>
                 <Col>
                     <Nav className="justify-content-center">
-                        <Nav.Link className="text-white"><Link to="/" className='nav-item'>Inicio</Link></Nav.Link>
+                        <Nav.Link href="/" className="text-white">Inicio</Nav.Link>
                         <NavDropdown title="Categoría" id="basic-nav-dropdown">
-                            <NavDropdown.Item><Link to="/categoria/1" className='nav-subitem'>Caballeros del Zodiaco</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/categoria/2" className='nav-subitem'>Dragon Ball Z</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link to="/categoria/3" className='nav-subitem'>One Piece</Link></NavDropdown.Item>
+                            <NavDropdown.Item href="/categoria/1" className='nav-subitem'>Caballeros del Zodiaco</NavDropdown.Item>
+                            <NavDropdown.Item href="/categoria/2" className='nav-subitem'>Dragon Ball Z</NavDropdown.Item>
+                            <NavDropdown.Item href="/categoria/3" className='nav-subitem'>One Piece</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link className="text-white"><Link to="/ofertas" className='nav-item'>Ofertas</Link></Nav.Link>
-                        <Nav.Link className="text-white"><Link to="/contacto" className='nav-item'>Contacto</Link></Nav.Link>
+                        <Nav.Link href="/ofertas" className="text-white">Ofertas</Nav.Link>
+                        <Nav.Link href="/contacto" className="text-white">Contacto</Nav.Link>
                     </Nav>
                 </Col>
                 </Row>
