@@ -25,7 +25,10 @@ const ItemDetail = ({item}) => {
             
                 {
                     quantitySelected>0? 
-                    <Link to='/ '><button>SEGUIR COMPRANDO</button></Link> : 
+                    <>
+                        <Link to='/cart '><button>Terminar compra</button></Link>
+                        <Link to='/ '><button>Seguir comprando</button></Link>
+                    </>: 
                     <ItemCount data={item} setQuantitySelected={setQuantitySelected}/>
                 }
             </div>

@@ -10,18 +10,18 @@ const Item = ({item}) => {
 
     const {id, title, description, price, pictureUrl} = item;
 
-    const addToCart = (quantity) => {
+    /* const addToCart = (quantity) => {
         addProductToCart(item ,quantity)
     }
-
+ */
     return(
         <Link to={`/item/${id}`} className="card-item">
-            <Card style={{ width: '14rem'}}>
+            <Card style={{ width: '13rem'}}>
                 <Card.Img variant="top" src={`../assets/images/${pictureUrl}`} className="card-img"/>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>S/ {price}.00</Card.Text>
-                    <Button variant="primary" onClick={addToCart}>Añadir al carrito</Button>
+                    {/* <Button variant="primary" onClick={addToCart}>Añadir al carrito</Button> */}
                 </Card.Body>
             </Card>
         </Link>

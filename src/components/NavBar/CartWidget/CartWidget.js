@@ -7,11 +7,12 @@ import { CartContext } from '../../../context/CartContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const CartWidget = () => {
-    const {cartProduct, clearProducts, deleteCartById} = useContext(CartContext);
+    const {cartProduct, totalProducts, clearProducts, deleteCartById} = useContext(CartContext);
     
     return (
         <Dropdown>
             <Dropdown.Toggle id="dropdown-drop-start">
+                {cartProduct.length !== 0 && totalProducts}
                 <FontAwesomeIcon icon={faCartShopping} >
                     Dropdown Button
                 </FontAwesomeIcon>
@@ -24,7 +25,7 @@ const CartWidget = () => {
                             return (
                                 <Dropdown.Item>
                                 <div className='cart-product' key={product.id}>
-                                    <img className='cart-product-picture' src={`../assets/images/${product.pictureUrl}`}/>
+                                    <img className='cart-product-picture' src={`../assets/images/${product.pictureUrl}`} alt={product.title}/>
                                     <div className='cart-product-title-price'>
                                         <p className='cart-product-title'>{product.title}</p>
                                         <p className='cart-product-price'>S/{product.price}.00</p>

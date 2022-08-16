@@ -4,6 +4,7 @@ const CartContext = createContext()
 
 const CartProvider = ({children}) => {
     const [cartProduct, setCartProduct] = useState([]);
+    const [totalProducts, setTotalProducts] = useState(0);
 
     /* const addProductToCart = (product) => {
         //setCartProduct(cartProduct => [...cartProduct, product]);
@@ -11,6 +12,9 @@ const CartProvider = ({children}) => {
     } */
 
     const addProductToCart = (item, quantity) => {
+        setTotalProducts(totalProducts + quantity)
+
+        //condicional para saber si el producto ya existe para que no se duplique
         if(cartProduct.some(el => el.id === item.id)){
             
             let index = cartProduct.findIndex(el => el.id === item.id);
@@ -43,6 +47,7 @@ const CartProvider = ({children}) => {
 
     const data = {
         cartProduct,
+        totalProducts,
         setCartProduct,
         clearProducts,
         addProductToCart,

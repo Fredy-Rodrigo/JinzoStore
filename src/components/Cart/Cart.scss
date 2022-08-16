@@ -1,0 +1,104 @@
+.cart {
+    width: 1000px;
+    margin: 0 auto 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    .checkout-title {
+        width: 100%;
+        margin: 20px 0;
+        color: white;
+        font-size: 30px;
+    }
+    
+    .lista-productos {
+        .cart-product {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 600px;
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            z-index: 10; 
+            margin-bottom: 5px;
+            background-color: #005897;
+            color: white;
+            .cart-product-picture{
+                width: 80px;
+                height: 100%;
+            }
+            .cart-product-title-price {
+                box-sizing: border-box;
+                width: 470px;
+                padding-left: 10px;
+                display: flex;
+                justify-content: start;
+                align-content: center;
+                flex-wrap: nowrap;
+                .cart-product-title {
+                    width: 55%;
+                }
+                .cart-product-price {
+                    width: 20%;
+                }
+                .cart-product-quantity {
+                    width: 25%;
+                }
+            }
+            .cart-product-title, .cart-product-price, .cart-product-quantity{
+                width: 100%;
+                margin: 0;
+            }
+            .cart-product-delete {
+                width: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+        .sin-productos {
+            width: 600px;
+            color: white;
+        }
+    }
+
+    button{
+        border: none;
+        border-radius: 40px;
+        padding: 5px 20px;
+        display: block;
+    }
+
+    .resumen-productos {
+        width: 380px;
+        margin-left: 20px;
+        padding: 20px 40px;
+        background-color: #005897;
+        h4 {
+            color: white;
+            margin-bottom: 50px;
+        }
+        p {
+            color: white;
+            position: relative;
+            span {
+                position: absolute;
+                right: 0;
+            }
+        }
+        p:last-of-type {
+            font-weight: bold;
+        }
+        button {
+            border: none;
+            border-radius: 40px;
+            padding: 5px 20px;
+            display: block;
+            margin: 10px auto;
+        }
+        button:first-of-type {
+            margin-top: 70px;
+        }
+    }
+}
