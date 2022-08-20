@@ -3,14 +3,16 @@ import ItemList from './ItemList/ItemList';
 import products from '../../utils/products.mock';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import db from '../../utils/firebaseConfig';
 
 const ItemListContainer = () => {
 
     const [listProducts, setListProducts] = useState([]) //creando el estado
 
     const {categoryId} = useParams();
-
-    const filtrarCategoria = products.filter((producto) => producto.categoria === categoryId);
+//////////
+    /* const filtrarCategoria = products.filter((producto) => producto.categoria === categoryId);
     
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(()=>{
@@ -19,18 +21,50 @@ const ItemListContainer = () => {
             } else {
                 resolve(products);
             }
-        },200)
-    })
+        },200) 
+    }) */
+////////////
+
+    // retornando toda la lista de productos
+    const getProducts = async () => {
+        const productCollection = collection(db, 'productos');
+        const productSnapshot = await getDocs(productCollection);
+        const productList = productSnapshot.docs.map((doc) => {
+            let product = doc.data();
+            product.id = doc.id;
+            return product;
+        })
+
+        // retornando los porductos pero filtrados por categoria
+        if(categoryId) {
+            const queryFilter = query(productCollection, where('categoria','==',categoryId))
+            const productSnapshot = await getDocs(queryFilter);
+            const productList = productSnapshot.docs.map((doc) => {
+                let product = doc.data();
+                product.id = doc.id;
+                return product;
+            })
+            return productList;
+        }
+        
+        return productList;
+    }
 
     useEffect(()=>{
-        getProducts
+        getProducts()
+        .then((res) => {
+            setListProducts(res);
+        })
+        //////////
+        /* getProducts
             .then((response) => {
                 setListProducts(response) //guardando el array dentro del estado    
             })
             .catch((error) => {
                 console.log("ocurrio un error en la llamada");
-            })
-    })
+            }) */
+        /////////
+    },[])
 
     return (
         <div className='item-list-container'>
