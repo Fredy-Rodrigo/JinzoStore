@@ -13,3 +13,5 @@ Proyecto para el curso de React JS de Coderhouse que simula una tienda virtual d
 - Sass
 - Fortawesome
 - React-Router-DOM
+
+![video-2022-09-11-120029_Q0RW5VWB (1)-min](https://user-images.githubusercontent.com/74442898/189542980-ff918a60-2600-401b-9857-e00bbdb3a09d.gif)
