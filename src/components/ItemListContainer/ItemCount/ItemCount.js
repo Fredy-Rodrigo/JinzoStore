@@ -21,7 +21,6 @@ const ItemCount = ({data, setQuantitySelected}) => {
 
     const onAdd = () => {
         addProductToCart(data, counter);
-        console.log(counter);
         setQuantitySelected(counter);
     }
 

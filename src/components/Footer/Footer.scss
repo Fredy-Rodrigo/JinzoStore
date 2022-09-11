@@ -1,0 +1,49 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #005897;
+    color: white;
+    .bloque {
+        width: 30%;
+        padding: 20px 30px 20px 20px;
+        box-sizing: border-box;
+        p {
+            width: 90%;
+            display: inline-block;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+        .icon {
+            width: 10%;
+            vertical-align: middle;
+        }
+        h4 {
+            margin-bottom: 1rem;
+        }
+    }
+    .bloque1 {}
+    .bloque2 {
+        .icon {
+            margin-bottom: 1rem;
+        }
+    }
+    .bloque3 {
+        .icon {
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background-color: white;
+            color: #005897;
+        }
+    }
+}
+
+.copy {
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: center;
+    color: white;
+}

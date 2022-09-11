@@ -9,15 +9,62 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CartWidget from './CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import db from '../../utils/firebaseConfig';
 
 const NavBar = () => {
+
+    const [listProducts, setListProducts] = useState([])
+    const [productoBuscado, setProductoBuscado] = useState('')
+    const [productoFiltrado, setProductoFiltrado] = useState([])
+
+    // capturar texto del input
+    const handleChange = (e) => {
+        setProductoBuscado(e.target.value);
+    }
+
+    // filtrar busqueda segun lo que se escriba en el input
+    const filtrar = (palabraBuscada) => {
+        let filtro = listProducts.filter((element) => element.title.toLowerCase().includes(palabraBuscada.toLowerCase()));
+
+        palabraBuscada?
+        setProductoFiltrado(filtro) :
+        setProductoFiltrado([])   
+    }
+
+    // traer data de firestore
+    const getProducts = async () => {
+        const productCollection = collection(db, 'productos');
+        const productSnapshot = await getDocs(productCollection);
+        const productList = productSnapshot.docs.map((doc) => {
+            let product = doc.data();
+            product.id = doc.id;
+            return product;
+        })
+        return productList;
+    }
+    
+    useEffect(()=>{
+        getProducts()
+        .then((res) => {
+            setListProducts(res);
+            filtrar(productoBuscado);
+        })
+    },[productoBuscado])
+    
+    // limpiar lista de busqueda cuando ya se seleccione un producto
+    const limpiarInput = () => {
+        setProductoBuscado('')
+    }
+
     return (
         <>
         <Navbar variant="dark" className='logo-busqueda-carrito'>
             <Container>
                 <Link to="/" className='logo'>
                         <img
-                        alt=""
+                        alt="JINZO STORE logo"
                         src={'./assets/images/logo.png'}
                         width="30"
                         height="30"
@@ -35,6 +82,7 @@ const NavBar = () => {
                         placeholder="Busca tu producto..."
                         className="me-2"
                         aria-label="Search"
+                        onChange={handleChange}
                         />
                         <Button variant="outline-light">Search</Button>
                     </Form>
@@ -42,13 +90,20 @@ const NavBar = () => {
                     </Row>
                 </Container>
 
+                <div className="display">
+                    {
+                        productoFiltrado!==[]?
+                        productoFiltrado.map((element) => {
+                            return(
+                                    <Link to={`/item/${element.id}`} onClick={limpiarInput}><p key={element.id} className="element">{element.title}</p></Link>
+                            )
+                        })
+                        :
+                        <p></p>
+                    }
+                </div>
+
                 <Nav>
-                    <Nav.Item>
-                        <Nav.Link eventKey="link-1" className="text-white">Acceder</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="link-2" className="text-white">Carrito</Nav.Link>
-                    </Nav.Item>
                     <Nav.Item>
                         <Nav.Link>
                             <CartWidget/>
@@ -64,14 +119,14 @@ const NavBar = () => {
                 <Row>
                 <Col>
                     <Nav className="justify-content-center">
-                        <Nav.Link href="/" className="text-white">Inicio</Nav.Link>
-                        <NavDropdown title="Categoría" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/categoria/1" className='nav-subitem'>Caballeros del Zodiaco</NavDropdown.Item>
-                            <NavDropdown.Item href="/categoria/2" className='nav-subitem'>Dragon Ball Z</NavDropdown.Item>
-                            <NavDropdown.Item href="/categoria/3" className='nav-subitem'>One Piece</NavDropdown.Item>
+                        <Link to="/" className="text-white">Inicio</Link>
+                        <NavDropdown title="Categoría" id="basic-nav-dropdown" className="text-white subitems">
+                            <Link to="/categoria/1" className='nav-subitem'>Caballeros del Zodiaco</Link>
+                            <Link to="/categoria/2" className='nav-subitem'>Dragon Ball Z</Link>
+                            <Link to="/categoria/3" className='nav-subitem'>One Piece</Link>
                         </NavDropdown>
-                        <Nav.Link href="/ofertas" className="text-white">Ofertas</Nav.Link>
-                        <Nav.Link href="/contacto" className="text-white">Contacto</Nav.Link>
+                        <Link to="/ofertas" className="text-white">Ofertas</Link>
+                        <Link to="/contacto" className="text-white">Contacto</Link>
                     </Nav>
                 </Col>
                 </Row>

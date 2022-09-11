@@ -6,11 +6,6 @@ const CartProvider = ({children}) => {
     const [cartProduct, setCartProduct] = useState([]);
     const [totalProducts, setTotalProducts] = useState(0);
 
-    /* const addProductToCart = (product) => {
-        //setCartProduct(cartProduct => [...cartProduct, product]);
-        setCartProduct([...cartProduct, product]);
-    } */
-
     const addProductToCart = (item, quantity) => {
         setTotalProducts(totalProducts + quantity)
 
@@ -33,16 +28,18 @@ const CartProvider = ({children}) => {
     }
 
     const clearProducts = () => {
-        setCartProduct([])
+        setCartProduct([]);
+        setTotalProducts(0);
     }
 
-    const deleteCartById = ( id ) => {
+    const deleteCartById = (id, quantity) => {
         const newCart = [...cartProduct];
         let index = newCart.findIndex(el => el.id === id);
         
         newCart.splice( index, 1 );
 
         setCartProduct([...newCart]);
+        setTotalProducts(totalProducts-quantity);
     }
 
     const data = {

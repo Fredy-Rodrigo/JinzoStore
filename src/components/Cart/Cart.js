@@ -2,7 +2,7 @@ import './Cart.scss';
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import { faTrashCan, faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import db from '../../utils/firebaseConfig.js';
@@ -69,7 +69,7 @@ const Cart = () => {
                                     <p className='cart-product-price'>S/{product.price}.00</p>
                                     <p className='cart-product-quantity'>Cantidad: {product.quantity}</p>
                                 </div>
-                                <div className='cart-product-delete' onClick={()=>deleteCartById(product.id)}>
+                                <div className='cart-product-delete' onClick={()=>deleteCartById(product.id, product.quantity)}>
                                     <FontAwesomeIcon icon={faTrashCan}/>
                                 </div>
                             </div>
@@ -80,38 +80,53 @@ const Cart = () => {
                     cartProduct.length===0? 
                     (<>
                         <p className='sin-productos'>No hay productos en el carrito</p>
-                        <Link to='/'><button>Continuar comprando</button></Link>
                     </>
                     ):
                     ''
                 }
                 
             </div>
+
+            
             <div className='resumen-productos'>
                 <h4>Resumen de la compra</h4>
                 <p>Subtotal<span>S/{total}.00</span></p>
                 <p>Envío<span>Gratis</span></p>
                 <p>Total<span>S/{total}.00</span></p>
-                <button onClick={()=>setShowModal(true)}>Completar compra</button>
+                {
+                    cartProduct[0] && (
+                    cartProduct[0].quantity!==0 && <button onClick={()=>setShowModal(true)}>Completar compra</button>
+                    )
+                }
+                <Link to='/'><button>Seguir comprando</button></Link>
             </div>
+            
+
             {
                 showModal && 
-                <Modal title='Datos de contacto' close={()=>setShowModal(false)}>
+                <Modal close={()=>setShowModal(false)}>
                     {
                         success? 
                         (
-                            <>
+                            <div className='terminar-orden'>
+                                <FontAwesomeIcon icon={faCircleCheck} className="check"/>
                                 <h4>Su orden se generó correctamente</h4>
                                 <p>Nro de orden: {success}</p>
-                            </>
+                                <Link to='/'><button>Seguir comprando</button></Link>
+                            </div>
                         ) :
                         (
-                            <form onSubmit={submitData}>
-                                <input type='text' name='name' placeholder='Ingrese su nombre' value={formData.name} onChange={handleChange}/>
-                                <input type='tel' name='phone' placeholder='Número telefónico' value={formData.phone} onChange={handleChange}/>
-                                <input type='email' name='email' placeholder='Ingrese su e-mail' value={formData.email} onChange={handleChange}/>
+                            <>
+                            <h2>Datos de contacto</h2>
+                            <form onSubmit={submitData} className='form'>
+                                <input type='text' name='name' placeholder='Ingrese su nombre' value={formData.name} onChange={handleChange} className="input" required/>
+                                <input type='tel' name='phone' placeholder='Número telefónico' value={formData.phone} onChange={handleChange} className="input" required/>
+                                <input type='email' name='email' placeholder='Ingrese su e-mail' value={formData.email} onChange={handleChange} className="input" required/>
+                                <input type='checkbox' name='recibir-ofertas' className='checkbox'/>
+                                <span>Quiero recibir ofertas y novedades por email</span>
                                 <button type='submit'>Enviar</button>
                             </form>
+                            </>
                         )
                     }
                 </Modal>

@@ -1,26 +1,38 @@
-/* .item {
-    width: 180px;
-    height: 280px;
-    display: inline-block;
-    margin: 0 10px;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    p {
-        color: white;
-        margin: 0;
-    }
-    button {
-        border-radius: 30px;
-    }
-} */
 
 .card-item {
+    position: relative;
     text-decoration: none;
-    color: rgb(97, 97, 97);
-    .card-img {
-        height: 280px;
+    color: #2875ac;
+    overflow: hidden;
+    .card {
+        background-color: white;
+        border: none;
+        height: 370px;
+        margin-bottom: 20px;
+        margin-right: 15px;
+        .card-img-container {
+            overflow: hidden;
+            .card-img {
+                height: 260px;
+                transition: all 0.2s;
+            }
+        }
+    }
+    .card:hover {
+        background-color: #2875ac;
+        color: white;
+    }
+    .card:hover .card-img{
+        transform: scale(1.15);
+    }
+    .oferta {
+        width: 200px;
+        padding: 10px 0;
+        background-color: rgb(233, 36, 36);
+        position: absolute;
+        top: 10px;
+        left: -60px;
+        color: white;
+        transform: rotate(-40deg);
     }
 }

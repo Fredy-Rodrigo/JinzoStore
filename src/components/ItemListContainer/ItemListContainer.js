@@ -1,29 +1,15 @@
 import './ItemListContainer.scss';
 import ItemList from './ItemList/ItemList';
-import products from '../../utils/products.mock';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import db from '../../utils/firebaseConfig';
 
-const ItemListContainer = () => {
+const ItemListContainer = ({ofertas}) => {
 
     const [listProducts, setListProducts] = useState([]) //creando el estado
 
     const {categoryId} = useParams();
-//////////
-    /* const filtrarCategoria = products.filter((producto) => producto.categoria === categoryId);
-    
-    const getProducts = new Promise((resolve, reject) => {
-        setTimeout(()=>{
-            if(categoryId==="1"||categoryId==="2"||categoryId==="3") {
-                resolve(filtrarCategoria);
-            } else {
-                resolve(products);
-            }
-        },200) 
-    }) */
-////////////
 
     // retornando toda la lista de productos
     const getProducts = async () => {
@@ -53,18 +39,15 @@ const ItemListContainer = () => {
     useEffect(()=>{
         getProducts()
         .then((res) => {
-            setListProducts(res);
+            
+            if(ofertas) {
+                let listaOfertas = res.filter((producto) => producto.oferta === true);
+                setListProducts(listaOfertas);
+            } else {
+                setListProducts(res); //guardando el array dentro del estado
+            }
         })
-        //////////
-        /* getProducts
-            .then((response) => {
-                setListProducts(response) //guardando el array dentro del estado    
-            })
-            .catch((error) => {
-                console.log("ocurrio un error en la llamada");
-            }) */
-        /////////
-    },[])
+    },[categoryId])
 
     return (
         <div className='item-list-container'>
